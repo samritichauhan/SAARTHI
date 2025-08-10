@@ -1,0 +1,213 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation */
+nav {
+    background-color: transparent;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.nav-left {
+    flex: 1;
+}
+
+.nav-center {
+    flex: 2;
+    text-align: center;
+}
+
+.nav-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul {
+    list-style: none;
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+    position: relative;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    transition: transform 0.3s, color 0.3s;
+    display: inline-block;
+}
+
+/* Hover Effect */
+nav ul li a:hover {
+    color: #ff6347;
+}
+
+nav ul li a:focus,
+nav ul li a:active {
+    transform: scale(1.2);
+    color: #ff6347;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Login/Signup */
+.nav-right .login-signup {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding-right: 40px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.nav-right .login-signup:hover {
+    color: #ff6347;
+    transform: scale(1.2);
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    animation: slideShow 32s infinite;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero .btn {
+    background-color: #ff6347;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+@keyframes slideShow {
+    0% { background-image: url('wonder1.jpg'); }
+    12.5% { background-image: url('wonder2.jpg'); }
+    25% { background-image: url('wonder3.jpg'); }
+    37.5% { background-image: url('wonder4.jpg'); }
+    50% { background-image: url('wonder5.jpg'); }
+    62.5% { background-image: url('wonder6.jpg'); }
+    75% { background-image: url('wonder7.jpg'); }
+    87.5% { background-image: url('wonder8.jpg'); }
+    100% { background-image: url('wonder1.jpg'); }
+}
+
+/* Light/Dark Mode Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 25px; /* Rounded edges */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 100;
+}
+
+/* Hover Effect for Toggle Button */
+.theme-toggle:hover {
+    background-color: #ff4500;
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+/* Active State for Toggle Button */
+.theme-toggle:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+}
+
+/* Dark Mode Styles */
+.dark-mode body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode nav {
+    background-color: #333;
+}
+
+.dark-mode .hero {
+    background-color: #1c1c1c;
+}
+
+.dark-mode .overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .nav-right .login-signup,
+.dark-mode nav ul li a,
+.dark-mode .logo {
+    color: #e0e0e0;
+}
+
+.dark-mode .nav-right .login-signup:hover,
+.dark-mode nav ul li a:hover {
+    color: #ff6347;
+}
+
+.dark-mode .hero-content h1,
+.dark-mode .hero-content p,
+.dark-mode .hero-content .btn {
+    color: #fff;
+}

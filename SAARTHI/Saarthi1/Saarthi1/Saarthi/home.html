@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Light/Dark Mode Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo">Saarthi</div>
+        </div>
+        <div class="nav-center">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="destination.html">Destinations</a></li>
+                <li><a href="guide.html">Guides</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="nav-right" id="nav-right">
+            <a href="login.html" class="login-signup" id="login-link">Login/Signup</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay"></div> <!-- Dark overlay -->
+        <div class="hero-content">
+            <h1>Explore the World with Us</h1>
+            <p>Your adventure starts here. Discover amazing destinations and create unforgettable memories.</p>
+            <a href="destination.html" class="btn">Discover More</a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navRight = document.getElementById('nav-right');
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+
+            if (user) {
+                navRight.innerHTML = `
+                    <a href="profile.html" class="profile-link">Welcome, ${user.name}</a>
+                    <a href="#" class="logout" id="logout">Logout</a>
+                `;
+            }
+
+            document.addEventListener('click', (event) => {
+                if (event.target.id === 'logout') {
+                    localStorage.removeItem('loggedInUser');
+                    window.location.href = 'home.html';
+                }
+            });
+
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                themeToggle.textContent = savedTheme === 'dark-mode' ? '☀️ Light Mode' : '🌙 Dark Mode';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    themeToggle.textContent = '☀️ Light Mode';
+                    localStorage.setItem('theme', 'dark-mode');
+                } else {
+                    themeToggle.textContent = '🌙 Dark Mode';
+                    localStorage.setItem('theme', 'light-mode');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

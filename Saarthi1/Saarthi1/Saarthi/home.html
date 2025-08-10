@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarthi</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo">Saarthi</div>
+        </div>
+        <div class="nav-center">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="destination.html">Destinations</a></li>
+                <li><a href="guide.html">Guides</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="nav-right" id="nav-right">
+            <!-- This will be dynamically changed -->
+            <a href="login.html" class="login-signup" id="login-link">Login/Signup</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay"></div> <!-- Dark overlay -->
+        <div class="hero-content">
+            <h1>Explore the World with Us</h1>
+            <p>Your adventure starts here. Discover amazing destinations and create unforgettable memories.</p>
+            <a href="destination.html" class="btn">Discover More</a>
+        </div>
+    </section>
+
+    <script>
+        // Wait for the DOM to fully load before checking login status
+        document.addEventListener('DOMContentLoaded', () => {
+            const navRight = document.getElementById('nav-right');
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    
+            if (user) {
+                // If user is logged in, show profile and logout options
+                navRight.innerHTML = `
+                    <a href="profile.html" class="profile-link">Welcome, ${user.name}</a>
+                    <a href="#" class="logout" id="logout">Logout</a>
+                `;
+            }
+    
+            // Handle logout functionality
+            document.addEventListener('click', (event) => {
+                if (event.target.id === 'logout') {
+                    localStorage.removeItem('loggedInUser'); // Clear user data
+                    window.location.href = 'home.html'; // Reload the page
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

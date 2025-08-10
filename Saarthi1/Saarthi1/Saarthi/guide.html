@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Guide</title>
+    <style>
+        body {
+            background-image: url(guide.jpg); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hidden form */
+        .hidden {
+            display: none;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        select, input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .payment-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .payment-amount {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #ffeb3b; /* Yellow color for visibility */
+        }
+
+        .confirmation {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #national-start-date{
+            max-width: 32.7rem;
+        }
+        #national-end-date{
+            max-width: 32.7rem;
+        }
+        #international-start-date{
+            max-width: 32.7rem;
+        }
+        #international-end-date{
+            max-width: 32.7rem;
+        }
+        #national-payment{
+            width: 7rem;
+            height: 2rem;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #national-payment:hover{
+            background-color: black;
+            color: #fff;
+            font-weight: bold;
+        }
+        #international-payment{
+            width: 7rem;
+            height: 2rem;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #international-payment:hover{
+            background-color: black;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: transparent;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .nav-left {
+            flex: 1;
+        }
+
+        .nav-center {
+            flex: 2;
+            text-align: center;
+        }
+
+        .nav-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav ul {
+            list-style: none;
+            display: inline-flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            transition: transform 0.3s, color 0.3s;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            color: #ff6347;
+        }
+
+        nav ul li a:focus,
+        nav ul li a:active {
+            transform: scale(1.2);
+            color: #ff6347;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-left: 15px;
+        }
+
+        .nav-right .login-signup {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding-right: 40px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .nav-right .login-signup:hover {
+            color: #ff6347;
+            transform: scale(1.2);
+        }
+
+        .nav-right .login-signup:focus,
+        .nav-right .login-signup:active {
+            transform: scale(1.2);
+            color: #ff6347;
+        }
+
+        .nav-right .login-signup:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo">Saarthi</div>
+        </div>
+        <div class="nav-center">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="destination.html">Destinations</a></li>
+                <li><a href="guide.html">Guides</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="nav-right" id="nav-right">
+            <!-- This will be dynamically changed -->
+            <a href="login.html" class="login-signup" id="login-link">Login/Signup</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Book a Guide</h1>
+        <button class="button" id="national-btn">Book a Guide for National Trip</button>
+        <button class="button" id="international-btn">Book a Guide for International Trip</button>
+
+        <!-- National Trip Booking Form -->
+        <div id="national-form" class="hidden">
+            <h2>National Trip</h2>
+            <form id="booking-national-form">
+                <label for="national-location">Select Location:</label>
+                <select id="national-location" name="location" required>
+                    <option value="" disabled selected>Select a location</option>
+<option value="andaman">Andaman</option>
+<option value="andhra-pradesh">Andhra Pradesh</option>
+<option value="arunachal-pradesh">Arunachal Pradesh</option>
+<option value="assam">Assam</option>
+<option value="bihar">Bihar</option>
+<option value="chandigarh">Chandigarh</option>
+<option value="chhattisgarh">Chhattisgarh</option>
+<option value="delhi">Delhi</option>
+<option value="goa">Goa</option>
+<option value="gujarat">Gujarat</option>
+<option value="haryana">Haryana</option>
+<option value="himachal-pradesh">Himachal Pradesh</option>
+<option value="jammu-and-kashmir">Jammu & Kashmir</option>
+<option value="jharkhand">Jharkhand</option>
+<option value="karnataka">Karnataka</option>
+<option value="kerala">Kerala</option>
+<option value="ladakh">Ladakh</option>
+<option value="madhya-pradesh">Madhya Pradesh</option>
+<option value="maharashtra">Maharashtra</option>
+<option value="manipur">Manipur</option>
+<option value="meghalaya">Meghalaya</option>
+<option value="mizoram">Mizoram</option>
+<option value="nagaland">Nagaland</option>
+<option value="odisha">Odisha</option>
+<option value="punjab">Punjab</option>
+<option value="rajasthan">Rajasthan</option>
+<option value="sikkim">Sikkim</option>
+<option value="tamil-nadu">Tamil Nadu</option>
+<option value="telangana">Telangana</option>
+<option value="uttar-pradesh">Uttar Pradesh</option>
+<option value="uttarakhand">Uttarakhand</option>
+<option value="west-bengal">West Bengal</option>
+
+                </select>
+
+                <label for="national-start-date">From:</label>
+                <input type="date" id="national-start-date" name="start_date" required>
+
+                <label for="national-end-date">To:</label>
+                <input type="date" id="national-end-date" name="end_date" required>
+
+                <div class="payment-container">
+                    <input type="button" value="Make Payment" id="national-payment">
+                    <span class="payment-amount" id="national-payment-amount">₹0</span>
+                </div>
+            </form>
+            <div id="national-confirmation" class="confirmation hidden"></div>
+        </div>
+
+        <!-- International Trip Booking Form -->
+        <div id="international-form" class="hidden">
+            <h2>International Trip</h2>
+            <form id="booking-international-form">
+                <label for="international-location">Select Location:</label>
+                <select id="international-location" name="location" required>
+                    <option value="" disabled selected>Select a location</option>
+<option value="argentina">Argentina</option>
+<option value="australia">Australia</option>
+<option value="austria">Austria</option>
+<option value="bangladesh">Bangladesh</option>
+<option value="belgium">Belgium</option>
+<option value="bhutan">Bhutan</option>
+<option value="brazil">Brazil</option>
+<option value="canada">Canada</option>
+<option value="chile">Chile</option>
+<option value="china">China</option>
+<option value="colombia">Colombia</option>
+<option value="croatia">Croatia</option>
+<option value="denmark">Denmark</option>
+<option value="international-location1">Egypt</option>
+<option value="international-location2">England</option>
+<option value="international-location3">Finland</option>
+<option value="international-location4">France</option>
+<option value="international-location5">Germany</option>
+<option value="international-location6">Greece</option>
+<option value="international-location7">Hungary</option>
+<option value="international-location8">Iceland</option>
+<option value="international-location9">Indonesia</option>
+<option value="ireland">Ireland</option>
+<option value="israel">Israel</option>
+<option value="italy">Italy</option>
+<option value="japan">Japan</option>
+<option value="jordan">Jordan</option>
+<option value="kenya">Kenya</option>
+<option value="kuwait">Kuwait</option>
+<option value="luxembourg">Luxembourg</option>
+<option value="malaysia">Malaysia</option>
+<option value="maldives">Maldives</option>
+<option value="mauritius">Mauritius</option>
+<option value="mexico">Mexico</option>
+<option value="morocco">Morocco</option>
+<option value="nepal">Nepal</option>
+<option value="netherlands">Netherlands</option>
+<option value="new-zealand">New Zealand</option>
+<option value="norway">Norway</option>
+<option value="oman">Oman</option>
+<option value="peru">Peru</option>
+<option value="philippines">Philippines</option>
+<option value="poland">Poland</option>
+<option value="qatar">Qatar</option>
+<option value="russia">Russia</option>
+<option value="saudi-arabia">Saudi Arabia</option>
+<option value="scotland">Scotland</option>
+<option value="seychelles">Seychelles</option>
+<option value="singapore">Singapore</option>
+<option value="slovenia">Slovenia</option>
+<option value="south-africa">South Africa</option>
+<option value="south-korea">South Korea</option>
+<option value="spain">Spain</option>
+<option value="sri-lanka">Sri Lanka</option>
+<option value="sweden">Sweden</option>
+<option value="switzerland">Switzerland</option>
+<option value="thailand">Thailand</option>
+<option value="turkey">Turkey</option>
+<option value="uae-dubai">UAE-Dubai</option>
+<option value="united-states">United States</option>
+<option value="vatican-city">Vatican City</option>
+<option value="vietnam">Vietnam</option>
+                </select>
+
+                <label for="international-start-date">From:</label>
+                <input type="date" id="international-start-date" name="start_date" required>
+
+                <label for="international-end-date">To:</label>
+                <input type="date" id="international-end-date" name="end_date" required>
+
+                <div class="payment-container">
+                    <input type="button" value="Make Payment" id="international-payment">
+                    <span class="payment-amount" id="international-payment-amount">$0</span>
+                </div>
+            </form>
+            <div id="international-confirmation" class="confirmation hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // Show the appropriate form based on the button clicked
+        document.getElementById('national-btn').addEventListener('click', function() {
+            document.getElementById('national-form').classList.remove('hidden');
+            document.getElementById('international-form').classList.add('hidden');
+        });
+
+        document.getElementById('international-btn').addEventListener('click', function() {
+            document.getElementById('international-form').classList.remove('hidden');
+            document.getElementById('national-form').classList.add('hidden');
+        });
+
+        // Update payment amount for National Trip
+        document.getElementById('national-start-date').addEventListener('change', calculateNationalPayment);
+        document.getElementById('national-end-date').addEventListener('change', calculateNationalPayment);
+
+        function calculateNationalPayment() {
+            const startDate = new Date(document.getElementById('national-start-date').value);
+            const endDate = new Date(document.getElementById('national-end-date').value);
+
+            if (startDate && endDate && endDate >= startDate) {
+                const timeDifference = endDate - startDate;
+                const dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // +1 to include start day
+                const totalAmount = dayDifference * 500; // 500 per day for national trips
+                document.getElementById('national-payment-amount').textContent = `₹${totalAmount}`;
+            } else {
+                document.getElementById('national-payment-amount').textContent = '₹0';
+            }
+        }
+
+        // Handle payment for National Trip
+        document.getElementById('national-payment').addEventListener('click', function() {
+            const location = document.getElementById('national-location').value;
+            const startDate = document.getElementById('national-start-date').value;
+            const endDate = document.getElementById('national-end-date').value;
+            const totalAmount = document.getElementById('national-payment-amount').textContent;
+
+            if (location && startDate && endDate) {
+                alert(`Payment Successful!\nDetails: Booking for ${location} from ${startDate} to ${endDate} (National Trip)\nTotal Amount: ${totalAmount}`);
+                document.getElementById('national-confirmation').textContent = `Booking for ${location} from ${startDate} to ${endDate} (National Trip) - Total Amount: ${totalAmount}`;
+                document.getElementById('national-confirmation').classList.remove('hidden');
+            } else {
+                alert('Please fill in all the fields before making a payment.');
+            }
+        });
+
+        // Update payment amount for International Trip
+        document.getElementById('international-start-date').addEventListener('change', calculateInternationalPayment);
+        document.getElementById('international-end-date').addEventListener('change', calculateInternationalPayment);
+
+        function calculateInternationalPayment() {
+            const startDate = new Date(document.getElementById('international-start-date').value);
+            const endDate = new Date(document.getElementById('international-end-date').value);
+
+            if (startDate && endDate && endDate >= startDate) {
+                const timeDifference = endDate - startDate;
+                const dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // +1 to include start day
+                const totalAmount = dayDifference * 40; // 40 USD per day for international trips
+                document.getElementById('international-payment-amount').textContent = `$${totalAmount}`;
+            } else {
+                document.getElementById('international-payment-amount').textContent = '$0';
+            }
+        }
+
+        // Handle payment for International Trip
+        document.getElementById('international-payment').addEventListener('click', function() {
+            const location = document.getElementById('international-location').value;
+            const startDate = document.getElementById('international-start-date').value;
+            const endDate = document.getElementById('international-end-date').value;
+            const totalAmount = document.getElementById('international-payment-amount').textContent;
+
+            if (location && startDate && endDate) {
+                alert(`Payment Successful!\nDetails: Booking for ${location} from ${startDate} to ${endDate} (International Trip)\nTotal Amount: ${totalAmount}`);
+                document.getElementById('international-confirmation').textContent = `Booking for ${location} from ${startDate} to ${endDate} (International Trip) - Total Amount: ${totalAmount}`;
+                document.getElementById('international-confirmation').classList.remove('hidden');
+            } else {
+                alert('Please fill in all the fields before making a payment.');
+            }
+        });
+    </script>
+
+</body>
+</html>
